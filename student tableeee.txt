@@ -1,0 +1,82 @@
+/****** Object:  Table [dbo].[tbstu]    Script Date: 05/08/2015 13:22:36 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[tbstu](
+	[stucod] [int] IDENTITY(205,1) NOT NULL,
+	[stunam] [varchar](50) NULL,
+	[stucol] [varchar](100) NULL,
+	[sturolno] [varchar](50) NULL,
+	[stutrgstrdat] [datetime] NULL,
+	[stutrgenddat] [datetime] NULL,
+	[stupic] [varchar](50) NULL,
+	[stuusrnam] [varchar](50) NULL,
+	[stupwd] [varchar](50) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[stucod] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
+
+
+
+/****** Object:  StoredProcedure [dbo].[logstu]    Script Date: 05/08/2015 13:22:35 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[logstu]
+	@stuusrnam varchar(50),
+	@stupwd varchar(50)
+AS
+	declare @actpwd varchar(50)
+	declare @r int
+	select @actpwd=stupwd from tbstu where
+	stuusrnam=@stuusrnam
+	if @actpwd=@stupwd 
+	select @r=stucod from tbstu where stuusrnam=@stuusrnam
+	else
+	set @r=-1
+	return @r
+GO
+
+
+/****** Object:  StoredProcedure [dbo].[insstu]    Script Date: 05/08/2015 13:22:35 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[insstu]
+	@stunam varchar(50),
+	@stucol varchar(50),
+	@sturolno varchar(50),
+	@stutrgstrdat datetime,
+	@stutrgenddat datetime,
+	@stupic varchar(50),
+	@stuusrnam varchar(50),
+	@stupwd varchar(50)
+AS
+declare @r int
+insert into tbstu values(@stunam,@stucol,@sturolno,@stutrgstrdat,@stutrgenddat,@stupic,@stuusrnam,@stupwd)
+select @r=@@IDENTITY
+update tbstu set stuusrnam='cssoft'+cast(@r as varchar(50)) where stucod=@r
+return @r
+GO
+
+
+/****** Object:  StoredProcedure [dbo].[fndstu]    Script Date: 05/08/2015 13:22:35 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[fndstu]
+	@stucod int
+AS
+	SELECT * from tbstu where stucod=@stucod
+GO

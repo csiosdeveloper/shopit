@@ -1,0 +1,79 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Shop it to me</title>
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+    </head>
+
+<body>
+    <form id="form1" runat="server">
+<!-----------------------------{ Main Wrapper }----------------------------->
+<div class="main-wrapper"> 
+  <!----------------{ Header }---------------->
+  <div class="header">
+    <div class="top-part">
+      <div class="top-inner-part">
+        <div class="call-no"> </div>
+        <div class="login-area"> Hello, Guest Welcome you can <a href="login.aspx"> Log in </a> or <a href="frmreg.aspx"> create an account </a>
+          <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+    </div>
+    <div class="logo-area">
+      <div class="logo"> <a href="#"> <img src="images/logo.png" /></a> </div>
+       <div class="search-bar">
+        
+           </div>
+      <div class="clearfix"></div>
+      <div class="navigation">
+        <ul>
+     <asp:DataList ID="DataList1" runat="server" DataSourceID="ObjectDataSource1" RepeatColumns="10" RepeatDirection="Horizontal" Width="546px" OnSelectedIndexChanged="DataList1_SelectedIndexChanged">
+                <ItemTemplate>
+   <li>
+       <asp:LinkButton ID="lk1" runat="server" CausesValidation="false" CommandName="Edit" Text='<%#Eval("prdtypnam") %>' />
+   </li>
+                </ItemTemplate>
+            </asp:DataList>
+        </ul>
+        <div class="clearfix"></div>
+      </div>
+    </div>
+    <div class="shadow"><img src="images/shadow.png" /></div>
+    <div class="banner"><a href="#"> <img src="images/banner.jpg" /> </a></div>
+  </div>
+  
+  <!----------------{ End Header }----------------> 
+  
+  <!----------------{ Middle }---------------->
+  <div class="middle">
+    <div class="middle-inner"> 
+      <!-------- evt-search-wrap -------->
+      <div class="product-box">
+          <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
+        <div class="clearfix">
+            <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" SelectMethod="disp_rec" TypeName="nsshop.clsprdtyp"></asp:ObjectDataSource>
+          </div>
+      </div>    
+      
+      <!-------- End-evt-search-wrap -------->
+    </div>
+  </div>
+  <!----------------{ End Middle }----------------> 
+  
+  <!----------------{ Footer }---------------->
+  <div class="footer">
+    <div class="footer-inner">
+      <div class="clearfix"></div>
+      <p> © Copyright 2015 C S Soft Solutions Pvt Ltd, Inc. All rights reserved. </p>
+    </div>
+  </div>
+  <!----------------{ End Footer }----------------> 
+</div>
+<!-----------------------------{ End Main Wrapper }----------------------------->
+    </form>
+</body>
+</html>
+

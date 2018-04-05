@@ -1,0 +1,77 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="retailer_MasterPage" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat ="server" >
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Shop it to me</title>
+<link rel="stylesheet" href="../css/style.css" type="text/css" />
+</head>
+
+<body>
+    <form name="form1" runat="server" >
+<!-----------------------------{ Main Wrapper }----------------------------->
+<div class="main-wrapper"> 
+  <!----------------{ Header }---------------->
+  <div class="header">
+    <div class="top-part">
+      <div class="top-inner-part">
+        <div class="call-no"> </div>
+        <div class="login-area"> Welcome <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label> <asp:LinkButton ID="LinkButton1" runat="server" OnClick="LinkButton1_Click" CausesValidation="False">Logout</asp:LinkButton>
+          <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+    </div>
+    <div class="logo-area">
+      <div class="logo"> <a href="#"> <img src="../images/logo.png" /></a> </div>
+      <div class="search-bar">
+        &nbsp;
+        <div class="clearfix"></div>
+      </div>
+      <div class="clearfix"></div>
+      <div class="navigation">
+        <ul>
+          <li><a href="frmprd.aspx"> Products </a> </li>
+          <li><a href="frmpndord.aspx"> Pending Orders </a> </li>
+          <li><a href="frmord.aspx"> Business Generation Report </a> </li>
+        
+        </ul>
+        <div class="clearfix"></div>
+      </div>
+    </div>
+    <div class="shadow"><img src="../images/shadow.png" /></div>
+  </div>
+  
+  <!----------------{ End Header }----------------> 
+  
+  <!----------------{ Middle }---------------->
+  <div class="middle">
+    <div class="middle-inner"> 
+      <!-------- evt-search-wrap -------->
+      <div class="pro-cart-page">
+                <div class="pro-discrp">
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>   
+            
+                </div>
+      </div>
+      
+      <!-------- End-evt-search-wrap -------->
+     
+    </div>
+  </div>
+  <!----------------{ End Middle }----------------> 
+  
+  <!----------------{ Footer }---------------->
+  <div class="footer">
+    <div class="footer-inner">
+      <div class="clearfix"></div>
+      <p> © Copyright 2015 C S Soft Solutions Pvt Ltd, Inc. All rights reserved. </p>
+    </div>
+  </div>
+  <!----------------{ End Footer }----------------> 
+</div>
+<!-----------------------------{ End Main Wrapper }----------------------------->
+</form>
+</body>
+</html>
